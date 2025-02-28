@@ -204,6 +204,7 @@ copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Readme.md" />
     <None Include="depth_display_frag.glsl" />
     <None Include="depth_display_vert.glsl" />
     <None Include="polyhedral_frag.glsl" />

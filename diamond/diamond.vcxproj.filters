@@ -214,6 +214,7 @@
     <None Include="depth_display_frag.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\Readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="steam_appid.txt" />
