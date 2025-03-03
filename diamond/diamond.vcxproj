@@ -124,6 +124,7 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)diamond\steam_appid.txt" "$(TargetDir)steam_appid.txt"
 copy "$(SolutionDir)diamond\*.glsl" "$(TargetDir)"
+copy "$(SolutionDir)diamond\*.vdf" "$(TargetDir)"
 copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -147,6 +148,7 @@ copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"</Comm
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)diamond\steam_appid.txt" "$(TargetDir)steam_appid.txt"
 copy "$(SolutionDir)diamond\*.glsl" "$(TargetDir)vs"
+copy "$(SolutionDir)diamond\*.vdf" "$(TargetDir)"
 copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"
 </Command>
     </PostBuildEvent>
