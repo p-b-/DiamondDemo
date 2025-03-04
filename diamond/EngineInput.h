@@ -60,13 +60,10 @@ private:
 
 	// An map of game 'enums' to steam handle for digital Steam Controller events
 	std::map<unsigned int, InputDigitalActionHandle_t> m_mpControllerDigitalActionHandles;
-	//InputDigitalActionHandle_t m_ControllerDigitalActionHandles[unsigned int];
-	// An map of game 'enums' to steam handle for analog Steam Controller events
+	// A map of game 'enums' to steam handle for analog Steam Controller events
 	std::map<unsigned int, InputAnalogActionHandle_t> m_mpControllerAnalogActionHandles;
-	// An map of game 'enums' to steam handle for different Steam Controller action set configurations
+	// A map of game 'enums' to steam handle for different Steam Controller action set configurations
 	std::map<unsigned int, InputActionSetHandle_t> m_mpControllerActionSetHandles;
-	std::map<unsigned int, EInputActionOrigin> m_mpControllerDigitalActionOrigins;
-	std::map<unsigned, int, EInputActionOrigin> m_mpControllerAnalogActionOrigins;
 
 	std::map<unsigned int, bool> m_mpActionWhenReleased;
 	std::map<unsigned int, bool> m_mpActionIsPressed;

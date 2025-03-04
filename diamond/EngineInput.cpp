@@ -1,6 +1,3 @@
-// /home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/37422590/config/480/controller_neptune.vdf
-
-
 #include "EngineInput.h"
 #include "Window.h"
 #include "IGameInput.h"
@@ -51,49 +48,25 @@ EngineInput::EngineInput(Window* pWnd, IGameInput* pGameInput) {
     m_pWnd->SetScrollCallback(scroll_callback);
     m_pWnd->SetKeyCallback(key_callback);
     m_pWnd->SetFocusCallback(focus_callback);
-//    m_pWnd->CaptureMouse();
     m_pWnd->SetInput(this);
 }
 
 bool EngineInput::Initialise() {
-    char rgchCWD[1024];
-    if (!_getcwd(rgchCWD, sizeof(rgchCWD)))
-    {
-        strcpy(rgchCWD, ".");
-    }
-
-    char rgchFullPath[1024];
-#if defined(OSX)
-    // hack for now, because we do not have utility functions available for finding the resource path
-    // alternatively we could disable the SteamController init on OS X
-    _snprintf(rgchFullPath, sizeof(rgchFullPath), "%s/steamworksexample.app/Contents/Resources/%s", rgchCWD, "steam_input_manifest.vdf");
-#else
-    _snprintf(rgchFullPath, sizeof(rgchFullPath), "%s\\%s", rgchCWD, "steam_input_manifest.vdf");
-#endif
-    std::cout << "Manifest: " << rgchFullPath << std::endl;
-    bool setCorrectly = SteamInput()->SetInputActionManifestFilePath(rgchFullPath);
-    std::cout << "Set input action manifest: "<<setCorrectly<<std::endl;
-
-    //    m_hInGame = SteamInput()->GetActionSetHandle("InGameControls");
-
-    // clear the action handles
-    m_mpControllerDigitalActionHandles.clear();
-    m_mpControllerActionSetHandles.clear();
-    m_mpControllerAnalogActionHandles.clear();
-    // To be used when support origins:
-//    m_ControllerDigitalActionOrigins.clear();
-//    m_ControllerAnalogActionOrigins.clear();
-    m_hActiveController = 0;
-    m_bInputConfigRead = ReadConfigFile();
-    if (m_bInputConfigRead) {
-        // Used to signal to user that action has happened.
-    //    m_pGameInput->ControllerContected(0);
-    }
-
     if (!SteamInput()->Init(false))
     {
         return false;
     }
+    
+    // clear the action handles
+    m_mpControllerDigitalActionHandles.clear();
+    m_mpControllerActionSetHandles.clear();
+    m_mpControllerAnalogActionHandles.clear();
+    m_hActiveController = 0;
+    m_bInputConfigRead = ReadConfigFile();
+    if (m_bInputConfigRead) {
+        std::cout << "Read controller config on startup" << std::endl;
+    }
+
     return true;
 }
 
@@ -128,12 +101,17 @@ void EngineInput::PollSteamInput() {
         m_pGameInput->ControllerContected(m_hActiveController);
         break;
     case eCCA_ControllerDisconnected:
+        std::cout << "Controller disconnected" << std::endl;
         m_hActiveController = 0;
         m_bInputConfigRead = false;
         m_pGameInput->ControllerDisconnected();
         break;
     case eCCA_ControllerChanged:
+        std::cout << "Controller changed" << std::endl;
         m_bInputConfigRead = ReadConfigFile();
+        if (m_bInputConfigRead) {
+            std::cout << "Re-read controller config" << std::endl;
+        }
         m_pGameInput->ControllerContected(m_hActiveController);
         break;
     }
@@ -209,7 +187,6 @@ bool EngineInput::RegisterDigitalAction(unsigned int unAction, const char* pszAc
         }
         return true;
     }
-
     return false;
 }
 

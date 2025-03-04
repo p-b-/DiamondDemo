@@ -116,6 +116,7 @@ bool InitialiseSteam() {
     if (!SteamUser()->BLoggedOn())
     {
         OutputDebugStringA("Steam user is not logged in\n");
+        // Do not have to be actually logged on for this demo to work
         //Alert(L"Fatal Error", L"Steam user must be logged in to play this game (SteamUser()->BLoggedOn() returned false).\n");
         //return false;
     }
