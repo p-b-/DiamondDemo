@@ -154,7 +154,6 @@ copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\glad\src\glad.c" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="DiamondScene.cpp" />
@@ -164,6 +163,7 @@ copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"
     <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="EngineInput.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PointLight.cpp" />
