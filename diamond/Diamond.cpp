@@ -21,7 +21,7 @@ Diamond::Diamond() {
 }
 
 Diamond::~Diamond() {
-
+    Deinitialise();
 }
 
 void Diamond::Initialise(unsigned int unEntityId) {

@@ -14,6 +14,7 @@ class Shader
 {
 public:
 	Shader();
+    ~Shader();
     bool InitialiseShaders(const char* pzVertexPath, const char* pzFragmentPath);
     void Use() const;
 

@@ -17,8 +17,12 @@ SceneEntity::SceneEntity(Entity3d* pEntity, glm::vec3 vecModel, float fScale) {
 }
 
 SceneEntity::~SceneEntity() {
+	m_pAttachedTo = nullptr;
 	if (m_pEntity != nullptr) {
 		m_pEntity->DecrementRefCount();
+	}
+	for (auto a : m_vcpAttachments) {
+		delete a->m_pAttachedTo;
 	}
 }
 

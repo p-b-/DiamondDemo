@@ -15,7 +15,7 @@ class Camera : public SelfContainedEntity3d
 {
 public:
 	Camera(glm::vec2 vecScreenSize, glm::vec3 vecPosition, float fNearZ, float fFarZ);
-	virtual ~Camera() {}
+	virtual ~Camera() { Deinitialise(); }
 	virtual void Initialise(unsigned int unEntityId) {}
 	virtual void Initialise(unsigned int unEntityId, Textures* pTextureCtrl) {}
 	virtual void Deinitialise() {}

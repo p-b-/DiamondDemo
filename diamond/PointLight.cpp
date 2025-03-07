@@ -8,4 +8,5 @@ PointLight::PointLight(glm::vec3 vecColour) {
 }
 
 PointLight::~PointLight() {
+	Deinitialise();
 }

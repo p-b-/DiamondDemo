@@ -24,7 +24,7 @@ Tile3d::Tile3d() {
 }
 
 Tile3d::~Tile3d() {
-
+    Deinitialise();
 }
 
 void Tile3d::Initialise(unsigned int unEntityId) {

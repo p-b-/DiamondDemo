@@ -26,11 +26,13 @@ GameLoop::~GameLoop() {
     }
 }
 
-void GameLoop::RunLoop(Window& wnd, bool bUseShadows, Textures* pTextureCtrl, IScene* pScene) {
+void GameLoop::RunLoop(Window& wnd, Textures* pTextureCtrl, IScene* pScene) {
     pScene->SetGameLoop(this);
     m_pWnd = &wnd;
+    // Note, in future versions, instead of IScene being passed into this method, a new Interface type IGame is passed.
+    //  This provides the IScene and the IGameInput to the GameLoop. The engine's GameLoop (here) should not know about GameInput.
+
     GameInput* pGameInput = new GameInput(&wnd, pScene);
-    ShadowedScene* pShadowedScene = dynamic_cast<ShadowedScene*>(pScene);
 
     m_pEngineInput = new EngineInput(&wnd, pGameInput);
     if (!m_pEngineInput->Initialise()) {
@@ -43,19 +45,21 @@ void GameLoop::RunLoop(Window& wnd, bool bUseShadows, Textures* pTextureCtrl, IS
         } */
     }
 
+    bool bUsingShadows = pScene->GetUsingShadows();
     while (!wnd.IsClosing()) {
         gnFrameCount++;
         if (gnFrameCount == 100) {
 
         }
-        wnd.StartRenderLoop(bUseShadows);
+        wnd.StartRenderLoop(bUsingShadows);
         SteamAPI_RunCallbacks();
         float fDeltaTime = wnd.GetDeltaTime();
         if (m_pEngineInput != nullptr) {
             m_pEngineInput->ProcessInput(fDeltaTime);
         }
         pScene->AnimateScene(fDeltaTime);
-        if (bUseShadows) {
+
+        if (bUsingShadows) {
             pScene->DrawScene(true);
             m_pWnd->EndShadowRendering();
         }
@@ -65,10 +69,14 @@ void GameLoop::RunLoop(Window& wnd, bool bUseShadows, Textures* pTextureCtrl, IS
         wnd.SwapBuffers();
     }
     pScene->Deinitialise();
+    Entity::ClearUnreferencedEntities();
+
     if (m_pEngineInput != nullptr) {
         m_pEngineInput->DeinitialiseAndDelete();
         m_pEngineInput = nullptr;
     }
+    delete pGameInput;
+    pGameInput = nullptr;
 }
 
 void GameLoop::PauseGame(bool bPause) {

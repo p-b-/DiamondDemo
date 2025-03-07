@@ -8,6 +8,9 @@ Entity::Entity() {
 	m_unRefCount = 0;
 }
 
+Entity::~Entity() {
+}
+
 void Entity::IncrementRefCount() {
 	++m_unRefCount;
 }
@@ -17,4 +20,11 @@ void Entity::DecrementRefCount() {
 	if (m_unRefCount == 0) {
 		s_vcUnreferencedEntities.push_back(this);
 	}
+}
+
+void Entity::ClearUnreferencedEntities() {
+	for (auto e : s_vcUnreferencedEntities) {
+		delete e;
+	}
+	s_vcUnreferencedEntities.clear();
 }

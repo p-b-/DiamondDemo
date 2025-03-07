@@ -16,7 +16,7 @@ public:
 	GameLoop(const GameLoop& toCopy) = delete;
 	GameLoop(GameLoop&& toMove) noexcept = delete;
 
-	void RunLoop(Window& wnd, bool bUseShadows, Textures* pTextureCtrl, IScene* pScene);
+	void RunLoop(Window& wnd, Textures* pTextureCtrl, IScene* pScene);
 
 public:
 	virtual void PauseGame(bool bPause);

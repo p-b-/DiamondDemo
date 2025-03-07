@@ -32,7 +32,6 @@ Camera::Camera(glm::vec2 vecScreenSize, glm::vec3 vecPosition, float fNearZ, flo
     m_bUpdateProjectionMatrix = true;
 }
 
-
 void Camera::Move(glm::vec3 vecMove, float fDeltaTime) {
     float cameraSpeed = CalcCameraSpeed(fDeltaTime);
     // Forwards

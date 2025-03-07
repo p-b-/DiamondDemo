@@ -32,11 +32,14 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     HINSTANCE hPrevInstance,
     LPSTR     lpCmdLine,
     int       nCmdShow) {
+    // When linker System properties is set to Windows, this is called first.
     return main();
 }
 
 int main()
 {
+    // When linker System properties is set to Console, this is called first.
+    
     // If running with a console, and do not want to show it on steamdeck two windows interferes with controller focus, call this.
     // ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
     
@@ -55,13 +58,17 @@ int main()
 
     DiamondScene* pScene = new DiamondScene();
     pScene->Initialise(&textureCtrl, &wnd);
-    bool bUsingShadows = pScene->GetUsingShadows();
 
     GameLoop loop;
-    loop.RunLoop(wnd, bUsingShadows, &textureCtrl, pScene);
+    loop.RunLoop(wnd, &textureCtrl, pScene);
 
     wnd.Deinitialise();
+    delete pScene;
+    pScene = nullptr;
+
     DeinitialiseSteam();
+
+    delete pScene;
         
     return EXIT_SUCCESS;
 }

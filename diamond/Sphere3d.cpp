@@ -24,6 +24,7 @@ Sphere3d::Sphere3d(int nDetailLevel) {
 }
 
 Sphere3d::~Sphere3d() {
+    Deinitialise();
 }
 
 void Sphere3d::Initialise(unsigned int unEntityId) {
@@ -101,7 +102,6 @@ void Sphere3d::Deinitialise() {
     m_unVAO = 0;
     glDeleteBuffers(1, &m_unVBO);
     m_unVBO = 0;
-
     glDeleteBuffers(1, &m_unEBO);
     m_unEBO = 0;
 }

@@ -44,7 +44,7 @@ void DiamondScene::InitialiseCamera(Window* pWnd, glm::vec3 vecPos) {
     m_pCam->LookAt(m_vecRotateLightAround);
     m_pseCamera = new SceneEntity(m_pCam, vecPos);
     m_bCameraLocked = false;
-
+    m_vcEntities.push_back(m_pseCamera);
 }
 
 void DiamondScene::InitialiseLighting(glm::vec3 vecLightPos) {

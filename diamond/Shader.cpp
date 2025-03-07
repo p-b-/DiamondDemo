@@ -10,7 +10,10 @@ Shader::Shader() {
     m_unId = 0;
     m_pzVertexPath = nullptr;
     m_pzFragmentPath = nullptr;
+}
 
+Shader::~Shader() {
+    glDeleteProgram(m_unId);
 }
 
 bool Shader::InitialiseShaders(const char* pzVertexPath, const char* pzFragmentPath) {
