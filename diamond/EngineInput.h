@@ -41,6 +41,7 @@ public:
 
 private:
 	bool ReadConfigFile();
+	void SetManifestFileLocation();
 
 	void PollSteamInput();
 	ConnectorConnectionAction FindActiveSteamInputDevice();

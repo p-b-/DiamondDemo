@@ -46,6 +46,9 @@
     <Filter Include="Header Files\Engine\Input">
       <UniqueIdentifier>{855535de-14ac-487c-bfb8-98657bea7c5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InputResources">
+      <UniqueIdentifier>{fbe83d65-dff9-494e-83e0-b66ff545b183}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -215,6 +218,18 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="..\Readme.md" />
+    <None Include="steam_input_manifest.vdf">
+      <Filter>InputResources</Filter>
+    </None>
+    <None Include="steam_controller.vdf">
+      <Filter>InputResources</Filter>
+    </None>
+    <None Include="controller_neptune.vdf">
+      <Filter>InputResources</Filter>
+    </None>
+    <None Include="game_actions_480.vdf">
+      <Filter>InputResources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="steam_appid.txt" />

@@ -66,9 +66,30 @@ bool EngineInput::Initialise() {
     if (m_bInputConfigRead) {
         std::cout << "Read controller config on startup" << std::endl;
     }
+    SetManifestFileLocation();
 
     return true;
 }
+
+void EngineInput::SetManifestFileLocation() {
+    char rgchCWD[1024];
+    if (!_getcwd(rgchCWD, sizeof(rgchCWD)))
+    {
+        strcpy(rgchCWD, ".");
+    }
+
+    char rgchFullPath[1024];
+#if defined(OSX)
+    // Determine the correct path for OS-X - for now hardcode it
+    _snprintf(rgchFullPath, sizeof(rgchFullPath), "%s/diamond.app/Contents/Resources/%s", rgchCWD, "steam_input_manifest.vdf");
+#else
+    _snprintf(rgchFullPath, sizeof(rgchFullPath), "%s\\%s", rgchCWD, "steam_input_manifest.vdf");
+#endif
+
+    // Uncomment if having issues running on SteamDeck
+    //SteamInput()->SetInputActionManifestFilePath(rgchFullPath);
+}
+
 
 void EngineInput::DeinitialiseAndDelete() {
     SteamInput()->Shutdown();

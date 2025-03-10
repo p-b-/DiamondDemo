@@ -207,12 +207,16 @@ copy "$(SolutionDir)diamond\steam_api64.dll" "$(TargetDir)steam_api64.dll"
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.md" />
+    <None Include="controller_neptune.vdf" />
     <None Include="depth_display_frag.glsl" />
     <None Include="depth_display_vert.glsl" />
+    <None Include="game_actions_480.vdf" />
     <None Include="polyhedral_frag.glsl" />
     <None Include="polyhedral_vert.glsl" />
     <None Include="polyhedral_shadow_frag.glsl" />
     <None Include="polyhedral_shadow_vert.glsl" />
+    <None Include="steam_controller.vdf" />
+    <None Include="steam_input_manifest.vdf" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="steam_appid.txt" />
